@@ -44,40 +44,40 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyAsvUPhPC3F6BSg8CX_tZMeecXBp_sKsxY',
-    appId: '1:838252172667:web:a67f3fac4f92131cdfd9de',
-    messagingSenderId: '838252172667',
-    projectId: 'papa-e3194',
-    authDomain: 'papa-e3194.firebaseapp.com',
-    storageBucket: 'papa-e3194.appspot.com',
-    measurementId: 'G-QDBBP9840D',
+    apiKey: '',
+    appId: '',
+    messagingSenderId: '',
+    projectId: '',
+    authDomain: '',
+    storageBucket: '',
+    measurementId: '',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBxIYjbj7J7wfnY0lrEr3UEzg_npyNPltg',
-    appId: '1:838252172667:android:bd2160f56b8d3ef1dfd9de',
-    messagingSenderId: '838252172667',
-    projectId: 'papa-e3194',
-    storageBucket: 'papa-e3194.appspot.com',
+    apiKey: '',
+    appId: '',
+    messagingSenderId: '
+    ',
+    projectId: '',
+    storageBucket: '',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyAFcWARtCS9PEA0nnxz7R6fnCNW89h7ljw',
-    appId: '1:838252172667:ios:e3adaf8abc2d3a04dfd9de',
-    messagingSenderId: '838252172667',
-    projectId: 'papa-e3194',
-    storageBucket: 'papa-e3194.appspot.com',
-    iosClientId: '838252172667-mstlfj8evcs6emmsjsbrec8hnds0jqt6.apps.googleusercontent.com',
-    iosBundleId: 'com.example.mychatApp',
+    apiKey: '',
+    appId: '',
+    messagingSenderId: '',
+    projectId: '',
+    storageBucket: '',
+    iosClientId: '',
+    iosBundleId: '',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyAFcWARtCS9PEA0nnxz7R6fnCNW89h7ljw',
-    appId: '1:838252172667:ios:e3adaf8abc2d3a04dfd9de',
-    messagingSenderId: '838252172667',
-    projectId: 'papa-e3194',
-    storageBucket: 'papa-e3194.appspot.com',
-    iosClientId: '838252172667-mstlfj8evcs6emmsjsbrec8hnds0jqt6.apps.googleusercontent.com',
-    iosBundleId: 'com.example.mychatApp',
+    apiKey: '',
+    appId: '',
+    messagingSenderId: '',
+    projectId: '',
+    storageBucket:'',
+    iosBundleId: '',
   );
 }
