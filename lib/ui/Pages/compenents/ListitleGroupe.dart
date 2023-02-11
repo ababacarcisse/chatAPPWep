@@ -62,12 +62,6 @@ class _ListGroupeTitleState extends State<ListGroupeTitle> {
             ),
             subtitle: Text("Rejoindre la discussion avec ${widget.name}",
                 style: const TextStyle(fontSize: 13, color: Colors.white)),
-            trailing: IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.delete_forever,
-                  color: Colors.red,
-                )),
           ),
         ),
       ),

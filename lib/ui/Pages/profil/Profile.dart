@@ -60,7 +60,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
             leading: const Icon(Icons.group),
             title: const Text(
-              "Groups",
+              "Groupes",
               style: TextStyle(color: Colors.black),
             ),
           ),
@@ -83,8 +83,9 @@ class _ProfilePageState extends State<ProfilePage> {
                   context: context,
                   builder: (context) {
                     return AlertDialog(
-                      title: const Text("Logout"),
-                      content: const Text("Are you sure you want to logout?"),
+                      title: const Text("Déconnexion"),
+                      content: const Text(
+                          "êtes vous sûre de vouloir se déconnecter?"),
                       actions: [
                         IconButton(
                           onPressed: () {
@@ -116,7 +117,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
             leading: const Icon(Icons.exit_to_app),
             title: const Text(
-              "Logout",
+              "Déconnection",
               style: TextStyle(color: Colors.black),
             ),
           )
@@ -150,29 +151,6 @@ class _ProfilePageState extends State<ProfilePage> {
                 style: const TextStyle(
                   fontSize: 16.0,
                   color: Colors.grey,
-                ),
-              ),
-            ),
-            Container(
-              margin: const EdgeInsets.only(top: 20.0),
-              child: const Text(
-                "About Me",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20.0,
-                ),
-              ),
-            ),
-            Container(
-              margin: const EdgeInsets.only(top: 5.0),
-              child: const Text(
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "
-                "Vestibulum efficitur facilisis semper. Proin auctor odio quis "
-                "enim convallis, id rhoncus odio sollicitudin. Nam in enim "
-                "dignissim, dictum neque eu, dapibus magna. Sed vel velit vel "
-                "magna pellentesque facilisis a et leo.",
-                style: TextStyle(
-                  fontSize: 16.0,
                 ),
               ),
             ),

@@ -142,12 +142,12 @@ class _GroupeInfoState extends State<GroupeInfo> {
               );
             } else {
               return const Center(
-                child: Text("NO MEMBERS"),
+                child: Text("PAS DE MEMBRES"),
               );
             }
           } else {
             return const Center(
-              child: Text("NO MEMBERS"),
+              child: Text("PAS De MEMBRES"),
             );
           }
         } else {

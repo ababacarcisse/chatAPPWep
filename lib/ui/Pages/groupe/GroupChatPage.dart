@@ -121,22 +121,21 @@ class _ChatPageState extends State<ChatPage> {
 //a@gmail.com
   chatMessages() {
     return StreamBuilder(
-      stream: chats!,
-      builder: (context, AsyncSnapshot snapshot) {
-        return snapshot.hasData
-            ? ListView.builder(
-                itemCount: snapshot.data.docs.length,
-                itemBuilder: (context, index) {
-                  return MessageTile(
-                      message: snapshot.data.docs[index]['message'],
-                      sender: snapshot.data.docs[index]['sender'],
-                      sentByMe:
-                          widget.name == snapshot.data.docs[index]['sender']);
-                },
-              )
-            : Container();
-      },
-    );
+        stream: chats,
+        builder: (context, AsyncSnapshot snapshot) {
+          return snapshot.hasData
+              ? ListView.builder(
+                  itemCount: snapshot.data.docs.length,
+                  itemBuilder: (context, index) {
+                    return MessageTile(
+                        message: snapshot.data.docs[index]['message'],
+                        sender: snapshot.data.docs[index]['sender'],
+                        sentByMe:
+                            widget.name == snapshot.data.docs[index]['sender']);
+                  },
+                )
+              : Container();
+        });
   }
 
   sendMessage() {
