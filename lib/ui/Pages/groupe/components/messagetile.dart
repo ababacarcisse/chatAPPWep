@@ -1,15 +1,47 @@
-import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart'
+    show
+        Alignment,
+        BorderRadius,
+        BoxDecoration,
+        BuildContext,
+        Colors,
+        Column,
+        Container,
+        CrossAxisAlignment,
+        EdgeInsets,
+        FontWeight,
+        GestureDetector,
+        Key,
+        MaterialPageRoute,
+        Navigator,
+        Radius,
+        SizedBox,
+        State,
+        StatefulWidget,
+        Text,
+        TextAlign,
+        TextStyle,
+        Theme,
+        Widget;
+import 'package:mychat_app/functions/MyFunction.dart';
+import 'package:mychat_app/message/chatpaggg.dart';
 
 class MessageTile extends StatefulWidget {
   final String message;
   final String sender;
   final bool sentByMe;
-
+  final String name; // added 
+   final String uid; 
+  
   const MessageTile({
     Key? key,
     required this.message,
     required this.sender,
     required this.sentByMe,
+    // added
+    required this.name, required this.uid,
   }) : super(key: key);
 
   @override
@@ -50,14 +82,26 @@ class _MessageTileState extends State<MessageTile> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              widget.sender.toUpperCase(),
-              textAlign: TextAlign.start,
-              style: const TextStyle(
+            GestureDetector(
+              onTap: () {
+                String? currentuser = FirebaseAuth.instance.currentUser?.uid;
+                navigate(
+                    context,
+                    ChatScreen(
+                      otherUserId:widget.uid,
+                      currentuser: currentuser!,  otherUser: widget.sender,
+                    ));
+              },
+              child: Text(
+                widget.sender.toUpperCase(),
+                textAlign: TextAlign.start,
+                style: const TextStyle(
                   fontSize: 10,
                   fontWeight: FontWeight.bold,
                   color: Colors.green,
-                  letterSpacing: -0.5),
+                  letterSpacing: -0.5,
+                ),
+              ),
             ),
             const SizedBox(
               height: 8,

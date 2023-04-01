@@ -70,8 +70,14 @@ class _SearchPageState extends State<SearchPage> {
             showSnackbar(context, Colors.green,
                 "Tu viens de rejoindre le groupe avec succés ");
             Future.delayed(const Duration(seconds: 2), () {
-              navigate(context,
-                  ChatPage(groupId: groupId, groupName: groupName, name: name));
+              navigate(
+                  context,
+                  ChatPage(
+                    groupId: groupId,
+                    groupName: groupName,
+                    name: name,
+                    uid: '',
+                  ));
             });
           } else {
             setState(() {

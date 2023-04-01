@@ -10,21 +10,21 @@ import '../../../data/service.dart/Auth/AuthService.dart';
 import '../profil/Profile.dart';
 import '../authPage.dart/login.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class groupsHomePage extends StatefulWidget {
+  const groupsHomePage({Key? key}) : super(key: key);
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<groupsHomePage> createState() => _groupsHomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _groupsHomePageState extends State<groupsHomePage> {
   String name = "";
   String email = "";
   AuthService authService = AuthService();
   Stream? groups;
   bool _isLoading = false;
   String groupName = "";
-
+  String uid = FirebaseAuth.instance.currentUser!.uid;
   @override
   void initState() {
     super.initState();
@@ -78,7 +78,7 @@ class _HomePageState extends State<HomePage> {
         centerTitle: true,
         backgroundColor: Theme.of(context).primaryColor,
         title: const Text(
-          "Groupes",
+          "Groups",
           style: TextStyle(
               color: Colors.white, fontWeight: FontWeight.bold, fontSize: 27),
         ),
@@ -114,7 +114,7 @@ class _HomePageState extends State<HomePage> {
                 const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
             leading: const Icon(Icons.group),
             title: const Text(
-              "Groupes",
+              "Groups",
               style: TextStyle(color: Colors.black),
             ),
           ),
@@ -142,9 +142,8 @@ class _HomePageState extends State<HomePage> {
                   context: context,
                   builder: (context) {
                     return AlertDialog(
-                      title: const Text("déconnexion "),
-                      content: const Text(
-                          "êtes vous sûre de vouloir se déconnecter?"),
+                      title: const Text("Logout"),
+                      content: const Text("Are you sure you want to logout?"),
                       actions: [
                         IconButton(
                           onPressed: () {
@@ -160,7 +159,7 @@ class _HomePageState extends State<HomePage> {
                             await authService.logOutFunction();
                             Navigator.of(context).pushAndRemoveUntil(
                                 MaterialPageRoute(
-                                    builder: (context) => LoginForm()),
+                                    builder: (context) => LoginPage()),
                                 (route) => false);
                           },
                           icon: const Icon(
@@ -176,7 +175,7 @@ class _HomePageState extends State<HomePage> {
                 const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
             leading: const Icon(Icons.exit_to_app),
             title: const Text(
-              "Déconnexion ",
+              "Logout",
               style: TextStyle(color: Colors.black),
             ),
           )
@@ -206,7 +205,7 @@ class _HomePageState extends State<HomePage> {
           return StatefulBuilder(builder: ((context, setState) {
             return AlertDialog(
               title: const Text(
-                "Créer un groupe",
+                "Create a group",
                 textAlign: TextAlign.left,
               ),
               content: Column(
@@ -247,7 +246,7 @@ class _HomePageState extends State<HomePage> {
                   },
                   style: ElevatedButton.styleFrom(
                       primary: Theme.of(context).primaryColor),
-                  child: const Text("ANNULER"),
+                  child: const Text("CANCEL"),
                 ),
                 ElevatedButton(
                   onPressed: () async {
@@ -269,7 +268,7 @@ class _HomePageState extends State<HomePage> {
                   },
                   style: ElevatedButton.styleFrom(
                       primary: Theme.of(context).primaryColor),
-                  child: const Text("C'éer"),
+                  child: const Text("CREATE"),
                 )
               ],
             );
@@ -281,7 +280,7 @@ class _HomePageState extends State<HomePage> {
     return StreamBuilder(
       stream: groups,
       builder: (context, AsyncSnapshot snapshot) {
-// afficher les groupes
+// make some checks
         if (snapshot.hasData) {
           if (snapshot.data['groups'] != null) {
             if (snapshot.data['groups'].length != 0) {
@@ -293,6 +292,7 @@ class _HomePageState extends State<HomePage> {
                     groupId: getId(snapshot.data['groups'][reverseIndex]),
                     groupName: getName(snapshot.data['groups'][reverseIndex]),
                     name: snapshot.data['name'],
+                    uid:snapshot.data["uid"],
                     onTap: () {
                       //   navigate(context, GroupChatPage(groupName));
                     },
@@ -336,7 +336,7 @@ class _HomePageState extends State<HomePage> {
             height: 20,
           ),
           const Text(
-            "Vous n'avez rejoint aucun groupe, appuyez sur l'icône ajouter pour créer un groupe ou effectuez également une recherche à partir du bouton de recherche supérieur",
+            "You've not joined any groups, tap on the add icon to create a group or also search from top search button.",
             textAlign: TextAlign.center,
           )
         ],

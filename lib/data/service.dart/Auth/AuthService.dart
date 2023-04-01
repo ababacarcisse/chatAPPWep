@@ -35,4 +35,13 @@ class AuthService {
   Future logOutFunction() async {
     return await firebaseAuth.signOut();
   }
+
+  Future<String?> getCurrentUserDisplayName() async {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      await user.reload(); // Met à jour les informations de l'utilisateur
+      return user.displayName;
+    }
+    return null;
+  }
 }

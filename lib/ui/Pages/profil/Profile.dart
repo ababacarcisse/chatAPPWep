@@ -3,7 +3,6 @@ import 'package:mychat_app/data/service.dart/Auth/AuthService.dart';
 import 'package:mychat_app/functions/MyFunction.dart';
 
 import '../authPage.dart/login.dart';
-import '../home/homePage.dart';
 
 class ProfilePage extends StatefulWidget {
   String name;
@@ -24,7 +23,7 @@ class _ProfilePageState extends State<ProfilePage> {
         backgroundColor: Theme.of(context).primaryColor,
         elevation: 0,
         title: const Text(
-          "Profile",
+          "Profil",
           style: TextStyle(
               color: Colors.white, fontSize: 27, fontWeight: FontWeight.bold),
         ),
@@ -54,13 +53,13 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
           ListTile(
             onTap: () {
-              navigate(context, const HomePage());
+              //     navigate(context, const Bot());
             },
             contentPadding:
                 const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
             leading: const Icon(Icons.group),
             title: const Text(
-              "Groupes",
+              "Groups",
               style: TextStyle(color: Colors.black),
             ),
           ),
@@ -83,9 +82,8 @@ class _ProfilePageState extends State<ProfilePage> {
                   context: context,
                   builder: (context) {
                     return AlertDialog(
-                      title: const Text("Déconnexion"),
-                      content: const Text(
-                          "êtes vous sûre de vouloir se déconnecter?"),
+                      title: const Text("Logout"),
+                      content: const Text("Are you sure you want to logout?"),
                       actions: [
                         IconButton(
                           onPressed: () {
@@ -101,7 +99,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             await authService.logOutFunction();
                             Navigator.of(context).pushAndRemoveUntil(
                                 MaterialPageRoute(
-                                    builder: (context) => LoginForm()),
+                                    builder: (context) => const LoginPage()),
                                 (route) => false);
                           },
                           icon: const Icon(
@@ -117,7 +115,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
             leading: const Icon(Icons.exit_to_app),
             title: const Text(
-              "Déconnection",
+              "Logout",
               style: TextStyle(color: Colors.black),
             ),
           )
@@ -130,19 +128,30 @@ class _ProfilePageState extends State<ProfilePage> {
             Container(
               margin: const EdgeInsets.only(top: 50.0),
               child: const CircleAvatar(
-                backgroundImage: NetworkImage("https://example.com/image.jpg"),
-                radius: 60.0,
-              ),
-            ),
-            Container(
-              margin: const EdgeInsets.only(top: 20.0),
-              child: Text(
-                widget.name,
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20.0,
+                backgroundColor: Colors.grey,
+                radius: 60,
+                child: Center(
+                  child: Icon(
+                    Icons.person_add,
+                    color: Color.fromARGB(255, 101, 78, 78),
+                    size: 100,
+                  ),
                 ),
               ),
+            ),
+            Row(
+              children: [
+                Container(
+                  margin: const EdgeInsets.only(top: 20.0),
+                  child: Text(
+                    widget.name,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20.0,
+                    ),
+                  ),
+                ),
+              ],
             ),
             Container(
               margin: const EdgeInsets.only(top: 5.0),
@@ -151,6 +160,29 @@ class _ProfilePageState extends State<ProfilePage> {
                 style: const TextStyle(
                   fontSize: 16.0,
                   color: Colors.grey,
+                ),
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.only(top: 20.0),
+              child: const Text(
+                "About Me",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20.0,
+                ),
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.only(top: 5.0),
+              child: const Text(
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "
+                "Vestibulum efficitur facilisis semper. Proin auctor odio quis "
+                "enim convallis, id rhoncus odio sollicitudin. Nam in enim "
+                "dignissim, dictum neque eu, dapibus magna. Sed vel velit vel "
+                "magna pellentesque facilisis a et leo.",
+                style: TextStyle(
+                  fontSize: 16.0,
                 ),
               ),
             ),

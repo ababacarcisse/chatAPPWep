@@ -1,8 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:mychat_app/ui/Pages/authPage.dart/login.dart';
+import 'package:mychat_app/ui/Pages/home/bottomnavigationPageHompage.dart';
 import 'firebase_options.dart';
-import 'ui/Pages/home/homePage.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -34,7 +35,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: isInSigneIN ? const HomePage() : LoginForm(),
+      home: isInSigneIN ? BottomnavigationHomePage(userId: FirebaseAuth.instance.currentUser!.uid,) : const LoginPage(),
     );
   }
 }

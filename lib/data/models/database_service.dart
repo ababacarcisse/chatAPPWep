@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class DatabaseService {
   final String? uid;
@@ -10,6 +11,8 @@ class DatabaseService {
       FirebaseFirestore.instance.collection("users");
   final CollectionReference groupCollection =
       FirebaseFirestore.instance.collection("groups");
+  final CollectionReference chatsStreamCollection =
+      FirebaseFirestore.instance.collection("chatsStream");
 
   // saving the userdata
   Future savingUserData(String fullName, String email) async {
@@ -23,7 +26,7 @@ class DatabaseService {
   }
 
   // getting user data
-  Future gettingUserData(String email) async {
+  Future gettingUserData([String? email]) async {
     QuerySnapshot snapshot =
         await userCollection.where("email", isEqualTo: email).get();
     return snapshot;
@@ -133,5 +136,39 @@ class DatabaseService {
         .collection("messages")
         .orderBy("time")
         .snapshots();
+  }
+
+  //rechercher uue profile
+  searchByNameUser(String name) {
+    return userCollection.where("name", isEqualTo: name).get();
+  }
+
+  getCurrentUserDisplayName() async {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      await user.reload(); // Met à jour les informations de l'utilisateur
+      return user.displayName;
+    }
+    return null;
+  }
+}
+
+//recupere les message privé
+Stream<QuerySnapshot<Map<String, dynamic>>> getChats(String chatRoomId) {
+  return FirebaseFirestore.instance
+      .collection("ChatRoom")
+      .doc(chatRoomId)
+      .collection("chats")
+      .orderBy("time", descending: false)
+      .snapshots();
+}
+
+class MyFunction {
+  static String getChatId(String uid1, String uid2) {
+    if (uid1.hashCode <= uid2.hashCode) {
+      return '$uid1-$uid2';
+    } else {
+      return '$uid2-$uid1';
+    }
   }
 }

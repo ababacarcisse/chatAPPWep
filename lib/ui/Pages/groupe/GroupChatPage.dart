@@ -10,11 +10,13 @@ class ChatPage extends StatefulWidget {
   final String groupId;
   final String groupName;
   final String name;
+  final String uid;
   const ChatPage(
       {Key? key,
       required this.groupId,
       required this.groupName,
-      required this.name})
+      required this.name,
+      required this.uid, })
       : super(key: key);
 
   @override
@@ -25,6 +27,7 @@ class _ChatPageState extends State<ChatPage> {
   Stream<QuerySnapshot>? chats;
   TextEditingController messageController = TextEditingController();
   String admin = "";
+  DatabaseService databaseService = DatabaseService();
 
   @override
   void initState() {
@@ -128,10 +131,13 @@ class _ChatPageState extends State<ChatPage> {
                   itemCount: snapshot.data.docs.length,
                   itemBuilder: (context, index) {
                     return MessageTile(
-                        message: snapshot.data.docs[index]['message'],
-                        sender: snapshot.data.docs[index]['sender'],
-                        sentByMe:
-                            widget.name == snapshot.data.docs[index]['sender']);
+                      message: snapshot.data.docs[index]['message'],
+                      sender: snapshot.data.docs[index]['sender'],
+                      sentByMe:
+                          widget.name == snapshot.data.docs[index]['sender'],
+                      name: widget.name,
+                      uid: snapshot.data.docs[index]!['uid'],
+                    );
                   },
                 )
               : Container();
@@ -143,6 +149,7 @@ class _ChatPageState extends State<ChatPage> {
       Map<String, dynamic> chatMessageMap = {
         "message": messageController.text,
         "sender": widget.name,
+        "uid": widget.uid,
         "time": DateTime.now().millisecondsSinceEpoch,
       };
 

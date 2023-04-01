@@ -6,6 +6,8 @@ import 'package:mychat_app/ui/Pages/authPage.dart/login.dart';
 import '../../../functions/MyFunction.dart';
 
 class RegisterPage extends StatefulWidget {
+  const RegisterPage({super.key});
+
   @override
   _RegisterPageState createState() => _RegisterPageState();
 }
@@ -16,7 +18,7 @@ class _RegisterPageState extends State<RegisterPage> {
   String name = '';
   late String email = '';
   String password = '';
-  String _confirmPassword = '';
+  final String _confirmPassword = '';
   AuthService authService = AuthService();
 
   @override
@@ -36,7 +38,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            Text(
+                            const Text(
                               'Inscription',
                               style: TextStyle(
                                 fontSize: 28,
@@ -125,7 +127,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                                       context,
                                                       MaterialPageRoute(
                                                           builder: (context) =>
-                                                              LoginForm())),
+                                                              const LoginPage())),
                                                 }
                                               else
                                                 {
@@ -152,7 +154,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  LoginForm()));
+                                                  const LoginPage()));
                                     },
                                     child: const Text("Se connecter")),
                               ],

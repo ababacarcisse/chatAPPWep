@@ -7,14 +7,15 @@ class ListGroupeTitle extends StatefulWidget {
   final groupId;
   final name;
   final groupName;
-
+  final uid;
   final onTap;
   const ListGroupeTitle({
     super.key,
     this.groupId,
     this.name,
     required this.groupName,
-    this.onTap,
+    this.onTap, this.uid,
+    
   });
 
   @override
@@ -30,7 +31,7 @@ class _ListGroupeTitleState extends State<ListGroupeTitle> {
           ChatPage(
             groupId: widget.groupId,
             groupName: widget.groupName,
-            name: widget.name,
+            name: widget.name, uid: widget.uid,
           ))),
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),

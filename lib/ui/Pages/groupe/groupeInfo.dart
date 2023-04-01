@@ -69,7 +69,7 @@ class _GroupeInfoState extends State<GroupeInfo> {
                           scale = scale == 1.0 ? 1.2 : 1.0;
                         });
                       },
-                      child: Container(
+                      child: SizedBox(
                         height: 60,
                         width: 60,
                         child: Center(
@@ -122,21 +122,22 @@ class _GroupeInfoState extends State<GroupeInfo> {
                     padding:
                         const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
                     child: ListTile(
-                        leading: CircleAvatar(
-                          radius: 30,
-                          backgroundColor: Theme.of(context).primaryColor,
-                          child: Text(
-                            getName(snapshot.data['members'][index])
-                                .substring(0, 1)
-                                .toUpperCase(),
-                            style: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold),
-                          ),
+                      leading: CircleAvatar(
+                        radius: 30,
+                        backgroundColor: Theme.of(context).primaryColor,
+                        child: Text(
+                          getName(snapshot.data['members'][index])
+                              .substring(0, 1)
+                              .toUpperCase(),
+                          style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold),
                         ),
-                        title: Text(getName(snapshot.data['members'][index])),
-                        subtitle: const Text("membre du groupe")),
+                      ),
+                      title: Text(getName(snapshot.data['members'][index])),
+                      subtitle: const Text("membre du groupe"),
+                    ),
                   );
                 },
               );
